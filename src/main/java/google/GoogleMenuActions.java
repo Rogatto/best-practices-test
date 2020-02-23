@@ -1,4 +1,4 @@
-package Google;
+package google;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -14,5 +14,6 @@ public class GoogleMenuActions {
 
     public void searchResult(String text){
         driver.findElement(searchField).sendKeys(text);
+        driver.findElement(searchField).submit();
     }
 }

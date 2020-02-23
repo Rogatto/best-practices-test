@@ -1,6 +1,6 @@
 package reutilizacao;
 
-import Google.GoogleMenuActions;
+import google.GoogleMenuActions;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +16,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
-public class TestReutilizacao {
+public class TestReusable {
 
     private WebDriver driver;
 
@@ -35,7 +35,7 @@ public class TestReutilizacao {
     }
 
     @Test
-    public void testZalenium(){
+    public void testReusable(){
         driver.get("https://www.google.com.br");
 
         GoogleMenuActions googleActions = new GoogleMenuActions(driver);
