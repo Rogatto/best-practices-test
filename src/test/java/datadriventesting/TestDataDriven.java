@@ -3,6 +3,7 @@ package datadriventesting;
 import google.GoogleMenuActions;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Cookie;
@@ -12,7 +13,6 @@ import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.testng.annotations.AfterTest;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -79,7 +79,7 @@ public class TestDataDriven {
         driver.manage().addCookie(cookie);
     }
 
-    @AfterTest
+    @After
     public void tearOFF() {
         driver.quit();
     }

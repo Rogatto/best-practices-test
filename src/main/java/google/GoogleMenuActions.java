@@ -14,6 +14,5 @@ public class GoogleMenuActions {
 
     public void searchResult(String text){
         driver.findElement(searchField).sendKeys(text);
-        driver.findElement(searchField).submit();
     }
 }
