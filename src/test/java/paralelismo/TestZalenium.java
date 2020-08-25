@@ -1,5 +1,6 @@
 package paralelismo;
 
+import google.GoogleMenuActions;
 import org.junit.*;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.Platform;
@@ -20,7 +21,7 @@ public class TestZalenium {
     public void setUp() throws MalformedURLException {
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability(CapabilityType.BROWSER_NAME, BrowserType.CHROME);
+        capabilities.setCapability(CapabilityType.BROWSER_NAME, BrowserType.FIREFOX);
         capabilities.setCapability(CapabilityType.PLATFORM_NAME, Platform.LINUX);
 
         URL remoteWebDriverUrl = new URL("http://localhost:4444/wd/hub");
@@ -31,8 +32,13 @@ public class TestZalenium {
     }
 
     @Test
-    public void testZalenium(){
+    public void testZalenium() {
         driver.get("https://www.google.com.br");
+    
+        //expondo ações existentes na tela em uma classe específica
+        GoogleMenuActions googleActions = new GoogleMenuActions(driver);
+        googleActions.searchResult("Sensedia API Quality");
+
 
         Cookie cookie = new Cookie("zaleniumTestPassed", "true");
         driver.manage().addCookie(cookie);

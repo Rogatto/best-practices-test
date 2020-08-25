@@ -11,7 +11,6 @@ import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
@@ -35,11 +34,11 @@ public class TestReusable {
     }
 
     @Test
-    public void testReusable(){
+    public void testReusable() {
         driver.get("https://www.google.com.br");
 
         GoogleMenuActions googleActions = new GoogleMenuActions(driver);
-        googleActions.searchResult("Code Like a Tester");
+        googleActions.searchResult("Sensedia API Quality");
 
         Cookie cookie = new Cookie("zaleniumTestPassed", "true");
         driver.manage().addCookie(cookie);

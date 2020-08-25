@@ -1,5 +1,7 @@
 package paralelismo;
 
+import google.GoogleMenuActions;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.BrowserType;
@@ -40,8 +42,14 @@ public class TestZaleniumParalelizado {
     }
 
     @Test
-    public void testZalenium(){
+    public void testZalenium() {
         driver.get("https://www.google.com.br");
+
+        GoogleMenuActions googleActions = new GoogleMenuActions(driver);
+        googleActions.searchResult("Sensedia API Quality");
+
+        Cookie cookie = new Cookie("zaleniumTestPassed", "true");
+        driver.manage().addCookie(cookie);
     }
 
     @AfterTest

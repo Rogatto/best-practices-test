@@ -1,4 +1,4 @@
-package datadriventesting;
+package datatesting;
 
 import google.GoogleMenuActions;
 import io.restassured.path.json.JsonPath;
@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 
 import static io.restassured.RestAssured.given;
 
-public class TestDataDriven {
+public class TestData {
 
     private String projectPath = System.getProperty("user.dir");
     public WebDriver driver;
@@ -66,14 +66,14 @@ public class TestDataDriven {
     }
 
     @Test
-    public void testDataDrivenTesting(){
+    public void testDataDrivenTesting() throws InterruptedException {
 
         String meetupName = pathjson.get("meetup_name");
 
         driver.get(baseUrl);
 
         GoogleMenuActions googleActions = new GoogleMenuActions(driver);
-        googleActions.searchResult(meetupName);
+            googleActions.searchResult(meetupName);
 
         Cookie cookie = new Cookie("zaleniumTestPassed", "true");
         driver.manage().addCookie(cookie);
