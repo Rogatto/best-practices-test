@@ -35,11 +35,11 @@ public class TestIntegration {
             OkHttpClient client = new OkHttpClient().newBuilder()
                     .build();
             Request request = new Request.Builder()
-                    .url("https://www.linkedin.com/company/sensedia/")
+                    .url("https://www.youtube.com/")
                     .method("GET", null)
                     .build();
-            Response response = client.newCall(request).execute();
 
+            Response response = client.newCall(request).execute();
             assertEquals(response.code(), 200);
         }
 }
