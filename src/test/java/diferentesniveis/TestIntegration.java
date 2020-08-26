@@ -15,7 +15,7 @@ public class TestIntegration {
        @Test
        @Category(IntegrationTest.class)
        public void testIntegrationFirst() throws IOException {
-          System.out.println("TEST INTEGRATION 1 - TDC SP");
+          System.out.println("TEST INTEGRATION 1");
 
            OkHttpClient client = new OkHttpClient().newBuilder()
                    .build();
@@ -40,6 +40,6 @@ public class TestIntegration {
                     .build();
 
             Response response = client.newCall(request).execute();
-            assertEquals(response.code(), 400);
+            assertEquals(response.code(), 200);
         }
 }
