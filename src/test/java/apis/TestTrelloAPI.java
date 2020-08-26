@@ -16,7 +16,8 @@ public class TestTrelloAPI {
 
     private String apiKey;
     private String accessToken;
-    private String projectPath = System.getProperty("user.dir");
+    private final String projectPath = System.getProperty("user.dir");
+    private String hostTrello;
 
     @Before
     public void setUp() throws IOException {
@@ -28,19 +29,37 @@ public class TestTrelloAPI {
 
         apiKey = properties.getProperty("api_key_trello");
         accessToken = properties.getProperty("token_trello");
+        hostTrello = properties.getProperty("endpoint_trello");
     }
 
     @Test
     public void testTrelloAPI(){
 
-        String hostTrello = "https://api.trello.com/1";
+        /* adiciona um board ao Trello */
+        Response responsePostBoard =
+                given()
+                        .contentType(ContentType.JSON)
+                        .queryParam("name", "TDC SP 2020")
+                        .queryParam("key", apiKey)
+                        .queryParam("token", accessToken)
+                        .when()
+                        .post(hostTrello + "/boards")
+                        .then()
+                        .statusCode(200)
+                        .extract().
+                        response();
+
+        responsePostBoard.print();
+
+        JsonPath pathjsonBoard = responsePostBoard.getBody().jsonPath();
+        String idBoard = pathjsonBoard.get("id");
 
         /* adiciona uma lista ao Trello */
         Response responsePostList =
                 given()
                         .contentType(ContentType.JSON)
                         .queryParam("name", "As 8 melhores práticas e formas de simplificar e estruturar todos seus Testes Automatizados")
-                        .queryParam("idBoard", "5e4c8f50f359a505255f1f29")
+                        .queryParam("idBoard", idBoard)
                         .queryParam("key", apiKey)
                         .queryParam("token", accessToken)
                         .when()
@@ -52,12 +71,10 @@ public class TestTrelloAPI {
 
         responsePostList.print();
 
-        JsonPath pathjson = responsePostList.getBody().jsonPath();
-
-        String idList = pathjson.get("id");
+        JsonPath pathjsonList = responsePostList.getBody().jsonPath();
+        String idList = pathjsonList.get("id");
 
         /* adicionar um card a lista */
-
         Response responsePostCard =
                 given()
                         .contentType(ContentType.JSON)

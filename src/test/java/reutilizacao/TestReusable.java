@@ -38,7 +38,7 @@ public class TestReusable {
         driver.get("https://www.google.com.br");
 
         GoogleMenuActions googleActions = new GoogleMenuActions(driver);
-        googleActions.searchResult("Sensedia API Quality");
+        googleActions.searchResult("TDC SP");
 
         Cookie cookie = new Cookie("zaleniumTestPassed", "true");
         driver.manage().addCookie(cookie);
