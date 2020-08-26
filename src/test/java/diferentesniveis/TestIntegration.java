@@ -40,6 +40,6 @@ public class TestIntegration {
                     .build();
 
             Response response = client.newCall(request).execute();
-            assertEquals(response.code(), 200);
+            assertEquals(response.code(), 400);
         }
 }
