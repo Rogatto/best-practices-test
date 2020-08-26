@@ -31,7 +31,7 @@ public class TestIntegration {
         @Test
         @Category(IntegrationTest.class)
         public void testIntegrationSecond() throws IOException {
-           System.out.println("TEST INTEGRATION 2");
+           System.out.println("TEST INTEGRATION 3");
             OkHttpClient client = new OkHttpClient().newBuilder()
                     .build();
             Request request = new Request.Builder()
