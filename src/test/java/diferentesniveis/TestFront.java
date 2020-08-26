@@ -8,7 +8,7 @@ public class TestFront {
        @Test
        @Category(FrontTest.class)
        public void testFrontFirst() {
-          System.out.println("TEST FRONT END 1");
+          System.out.println("TEST FRONT END 1 TDC");
        }
 
         @Test
