@@ -1,9 +1,7 @@
-package reutilizacao;
+package paralelismo;
 
 import google.GoogleMenuPages;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.BrowserType;
@@ -14,7 +12,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
-public class TestReusable {
+public class TestSeleniumGrid {
 
     private WebDriver driver;
 
@@ -22,7 +20,7 @@ public class TestReusable {
     public void setUp() throws MalformedURLException {
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability(CapabilityType.BROWSER_NAME, BrowserType.CHROME);
+        capabilities.setCapability(CapabilityType.BROWSER_NAME, BrowserType.FIREFOX);
         capabilities.setCapability(CapabilityType.PLATFORM_NAME, Platform.LINUX);
 
         URL remoteWebDriverUrl = new URL("http://localhost:4444/wd/hub");
@@ -33,8 +31,7 @@ public class TestReusable {
     }
 
     @Test
-    public void testReusable() {
-
+    public void testZalenium() {
         GoogleMenuPages googleMenuPages = new GoogleMenuPages(driver);
         googleMenuPages.searchResult("MTC 2021 - Minas Testing Conference");
     }

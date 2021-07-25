@@ -1,9 +1,9 @@
 package paralelismo;
 
+import google.GoogleMenuPages;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.Cookie;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.BrowserType;
@@ -17,11 +17,10 @@ import java.net.URL;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-public class TestZaleniumUtilizandoPropriedades {
+public class TestSeleniumGridUtilizandoPropriedades {
 
     private WebDriver driver;
-    private String projectPath = System.getProperty("user.dir");
-    private String baseUrlGoogle;
+    private final String projectPath = System.getProperty("user.dir");
 
     @Before
     public void setUp() throws IOException {
@@ -31,11 +30,9 @@ public class TestZaleniumUtilizandoPropriedades {
         Properties properties = new Properties();
 
         properties.load(input);
-        String endPointZalenium = properties.getProperty("endpoint_zalenium");
-        baseUrlGoogle = properties.getProperty("endpoint_google");
+        String endPointZalenium = properties.getProperty("endpoint_selenium_grid");
 
         System.out.println(endPointZalenium);
-        System.out.println(baseUrlGoogle);
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability(CapabilityType.BROWSER_NAME, BrowserType.CHROME);
@@ -51,10 +48,8 @@ public class TestZaleniumUtilizandoPropriedades {
     @Test
     public void testZalenium(){
 
-        driver.get(baseUrlGoogle);
-
-        Cookie cookie = new Cookie("zaleniumTestPassed", "true");
-        driver.manage().addCookie(cookie);
+        GoogleMenuPages googleMenuPages = new GoogleMenuPages(driver);
+        googleMenuPages.searchResult("MTC 2021 - Minas Testing Conference");
     }
 
     @After

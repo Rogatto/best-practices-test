@@ -2,39 +2,20 @@
 As 8 melhores práticas e formas de simplificar e estruturar todos seus Testes Automatizados
 
 
-# Temos somente a dependência de instalação do Docker e Zalenium
+# Execução do Selenium Grid:
 
-docker pull elgalu/selenium <br/>
-docker pull dosel/zalenium
-  
+**Executar arquivo docker compose em /docker/selenium-grid**
 
-# Execução do Zalenium:
-
-**Executar container local para apontar nossos testes**
-
- docker run --rm -ti --name zalenium -p 4444:4444 \
-    -v /var/run/docker.sock:/var/run/docker.sock \
-    -v /tmp/videos:/home/seluser/videos \
-    --privileged dosel/zalenium start <br/>
-   
-**Live:**
-http://localhost:4444/grid/admin/live
+```sh
+$ docker-compose up -d
+```
 
 **Dashboard:**
-http://localhost:4444/dashboard/
+http://localhost:4444/ui/index.html#/
 
 # Apontar nossos testes para o seguinte endpoint para executar localmente:
 
 http://localhost:4444/wd/hub <br/>
-
-<b> Exemplo de como fazer o apontamento do Zalenium em Java: </b><br/>
-
-DesiredCapabilities capabilities = new DesiredCapabilities(); <br/>
-capabilities.setCapability(CapabilityType.BROWSER_NAME, BrowserType.CHROME); <br/>
-capabilities.setCapability(CapabilityType.PLATFORM_NAME, Platform.LINUX); <br/>
-URL remoteWebDriverUrl = new URL("http://localhost:4444/wd/hub"); <br/>
-driver = new RemoteWebDriver(remoteWebDriverUrl, capabilities); <br/>
-
 
 # Atualizar arquivo de propriedades
 
@@ -43,3 +24,28 @@ driver = new RemoteWebDriver(remoteWebDriverUrl, capabilities); <br/>
 <b> 1.api_key_trello </b><br/>
 <b> 2.token_trello </b><br/>
 <b> 3.api_key_mockaroo </b><br/>
+
+
+## Estrutura do projeto
+
+O projeto foi estruturado da seguinte maneira:
+
+```
+src
+    \main
+        \java
+            # Pasta onde contém todos os page objects e métodos relacionados
+            \GoogleMenuPages.java
+    \test
+        \java
+            # Exemplo de como podemos utilizar apis de serviços terceiros
+            \apis
+            # Exemplo de dados sendo consumidos em nossos testes
+            \datatesting
+            # Estruturar diferentes tipos de testes
+            \diferentesniveis
+            # Paralelismo exemplos
+            \paralelismo
+            # Paralelismo exemplos
+            \reutilizacao
+```

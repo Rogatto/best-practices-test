@@ -12,7 +12,7 @@ import java.util.Properties;
 
 import static io.restassured.RestAssured.given;
 
-public class TestTrelloAPI {
+public class TrelloAPITest {
 
     private String apiKey;
     private String accessToken;
@@ -39,7 +39,7 @@ public class TestTrelloAPI {
         Response responsePostBoard =
                 given()
                         .contentType(ContentType.JSON)
-                        .queryParam("name", "TDC SP 2020")
+                        .queryParam("name", "MTC 2021")
                         .queryParam("key", apiKey)
                         .queryParam("token", accessToken)
                         .when()

@@ -1,12 +1,11 @@
 package datatesting;
 
-import google.GoogleMenuActions;
+import google.GoogleMenuPages;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.Cookie;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.BrowserType;
@@ -24,9 +23,8 @@ import static io.restassured.RestAssured.given;
 
 public class TestData {
 
-    private String projectPath = System.getProperty("user.dir");
+    private final String projectPath = System.getProperty("user.dir");
     public WebDriver driver;
-    private String baseUrl;
     private JsonPath pathjson;
 
     @Before
@@ -37,14 +35,13 @@ public class TestData {
 
         properties.load(input);
 
-        String endPointZalenium = properties.getProperty("endpoint_zalenium");
-        baseUrl = properties.getProperty("endpoint_google");
+        String endPointSeleniumGrid = properties.getProperty("endpoint_selenium_grid");
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability(CapabilityType.BROWSER_NAME, BrowserType.CHROME);
         capabilities.setCapability(CapabilityType.PLATFORM_NAME, Platform.LINUX);
 
-        URL remoteWebDriverUrl = new URL(endPointZalenium);
+        URL remoteWebDriverUrl = new URL(endPointSeleniumGrid);
         driver = new RemoteWebDriver(remoteWebDriverUrl, capabilities);
 
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -66,17 +63,12 @@ public class TestData {
     }
 
     @Test
-    public void testDataDrivenTesting() throws InterruptedException {
+    public void testDataDrivenTesting() {
 
         String meetupName = pathjson.get("meetup_name");
 
-        driver.get(baseUrl);
-
-        GoogleMenuActions googleActions = new GoogleMenuActions(driver);
-            googleActions.searchResult(meetupName);
-
-        Cookie cookie = new Cookie("zaleniumTestPassed", "true");
-        driver.manage().addCookie(cookie);
+        GoogleMenuPages googleActions = new GoogleMenuPages(driver);
+        googleActions.searchResult(meetupName);
     }
 
     @After

@@ -20,7 +20,7 @@ public class TestIntegration {
            OkHttpClient client = new OkHttpClient().newBuilder()
                    .build();
            Request request = new Request.Builder()
-                   .url("https://sensedia.com/en/")
+                   .url("https://www.google.com/")
                    .method("GET", null)
                    .build();
            Response response = client.newCall(request).execute();
@@ -31,7 +31,7 @@ public class TestIntegration {
         @Test
         @Category(IntegrationTest.class)
         public void testIntegrationSecond() throws IOException {
-           System.out.println("TEST INTEGRATION 3");
+           System.out.println("TEST INTEGRATION 2");
             OkHttpClient client = new OkHttpClient().newBuilder()
                     .build();
             Request request = new Request.Builder()

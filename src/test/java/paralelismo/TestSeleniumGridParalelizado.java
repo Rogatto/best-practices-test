@@ -1,27 +1,36 @@
 package paralelismo;
 
-import google.GoogleMenuActions;
-import org.junit.*;
-import org.openqa.selenium.Cookie;
+import google.GoogleMenuPages;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
-public class TestZalenium {
+public class TestSeleniumGridParalelizado {
 
     private WebDriver driver;
 
-    @Before
-    public void setUp() throws MalformedURLException {
+    @Parameters({"browser"})
+    @BeforeClass
+    public void setUp(String browser) throws MalformedURLException {
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability(CapabilityType.BROWSER_NAME, BrowserType.FIREFOX);
+
+        if(browser.equalsIgnoreCase("chrome")) {
+            capabilities.setCapability(CapabilityType.BROWSER_NAME, BrowserType.CHROME);
+        } else if(browser.equalsIgnoreCase("firefox")){
+            capabilities.setCapability(CapabilityType.BROWSER_NAME, BrowserType.FIREFOX);
+        }
+
         capabilities.setCapability(CapabilityType.PLATFORM_NAME, Platform.LINUX);
 
         URL remoteWebDriverUrl = new URL("http://localhost:4444/wd/hub");
@@ -32,19 +41,13 @@ public class TestZalenium {
     }
 
     @Test
-    public void testZalenium() {
-        driver.get("https://www.google.com.br");
-    
-        //expondo ações existentes na tela em uma classe específica
-        GoogleMenuActions googleActions = new GoogleMenuActions(driver);
-        googleActions.searchResult("Sensedia API Quality");
+    public void testZaleniumParallelExample() {
 
-
-        Cookie cookie = new Cookie("zaleniumTestPassed", "true");
-        driver.manage().addCookie(cookie);
+        GoogleMenuPages googleMenuPages = new GoogleMenuPages(driver);
+        googleMenuPages.searchResult("MTC 2021 - Minas Testing Conference");
     }
 
-    @After
+    @AfterTest
     public void tearOff(){
         driver.quit();
     }

@@ -3,14 +3,14 @@
     <test name="search-TestZalenium-chrome">
         <parameter name="browser" value="chrome"/>
         <classes>
-            <class name="paralelismo.TestZaleniumParalelizado"/>
+            <class name="paralelismo.TestSeleniumGridParalelizado"/>
         </classes>
     </test>
 
     <test name="search-TestZalenium-firefox">
         <parameter name="browser" value="firefox"/>
         <classes>
-            <class name="paralelismo.TestZaleniumParalelizado"/>
+            <class name="paralelismo.TestSeleniumGridParalelizado"/>
         </classes>
     </test>
 </suite>
