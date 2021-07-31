@@ -2,7 +2,7 @@ version: "2"
 
 services:
   sonarqube:
-    image: sonarqube:8.2-community
+    image: sonarqube:8.9.1-community
     depends_on:
       - db
     ports:

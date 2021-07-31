@@ -49,3 +49,12 @@ src
             # Paralelismo exemplos
             \reutilizacao
 ```
+
+
+## Rodar projeto no Sonar Qube
+
+**Executar arquivo docker compose em /docker/sonar-qube**
+
+```sh
+$ docker-compose up -d
+```

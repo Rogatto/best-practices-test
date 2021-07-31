@@ -25,7 +25,7 @@ public class TestData {
 
     private final String projectPath = System.getProperty("user.dir");
     public WebDriver driver;
-    private JsonPath pathjson;
+    private JsonPath pathJson;
 
     @Before
     public void setUp() throws IOException {
@@ -59,16 +59,16 @@ public class TestData {
                 response();
 
          response.print();
-         pathjson = response.getBody().jsonPath();
+        pathJson = response.getBody().jsonPath();
     }
 
     @Test
     public void testDataDrivenTesting() {
 
-        String meetupName = pathjson.get("meetup_name");
+        String eventName = pathJson.get("event_name");
 
         GoogleMenuPages googleActions = new GoogleMenuPages(driver);
-        googleActions.searchResult(meetupName);
+        googleActions.searchResult(eventName);
     }
 
     @After
